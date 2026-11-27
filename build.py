@@ -1,5 +1,6 @@
 from pathlib import Path
 import html
+from diagrams import diagram_for
 
 ROOT = Path(__file__).parent
 OUT = ROOT / 'dist'
@@ -239,7 +240,7 @@ entries = ''.join(f'<a class="contents-entry tone-{i+1}" href="{c["slug"]}.html"
 home = f'<div class="breadcrumb">章節目錄</div><section class="contents-heading"><h1>後端組主機手冊</h1><p>政大通主機的服務架構、部署與日常維護說明。選擇章節進入閱讀。本公開版的 IP、網域、路徑、服務名稱與網路配置均為教學範例。</p></section><nav class="contents-list" aria-label="手冊章節目錄">{entries}</nav>'
 (OUT / 'index.html').write_text(shell('後端組主機手冊', home), encoding='utf-8')
 for i, c in enumerate(chapters):
-    sections = ''.join(f'<section id="section-{j}"><h2>{title}</h2>{content}</section>' for j,(title,content) in enumerate(c['sections']))
+    sections = ''.join(f'<section id="section-{j}"><h2>{title}</h2>{content}{diagram_for(c["slug"], j)}</section>' for j,(title,content) in enumerate(c['sections']))
     toc = '<p class="nav-label">本章內容</p>' + ''.join(f'<a href="#section-{j}">{title}</a>' for j,(title,_) in enumerate(c['sections'])) + '<a href="#reference">指令速查</a>'
     prev = f'<a href="{chapters[i-1]["slug"]}.html"><small>上一章</small>{chapters[i-1]["title"]}</a>' if i else '<a href="index.html"><small>回到目錄</small>章節目錄</a>'
     nxt = f'<a href="{chapters[i+1]["slug"]}.html"><small>下一章</small>{chapters[i+1]["title"]}</a>' if i < 5 else '<a href="index.html"><small>回到目錄</small>章節目錄</a>'

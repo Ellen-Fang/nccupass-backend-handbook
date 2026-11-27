@@ -17,3 +17,13 @@ article{width:100%;max-width:1120px;margin-inline:auto}
 @media(max-width:760px){.layout,.layout:has(.contents-list){display:block}main{padding:22px 20px 0}.contents-heading{padding:22px 20px}.contents-list{gap:15px}.contents-entry{grid-template-columns:35px minmax(0,1fr);padding:21px 17px;gap:15px}article{max-width:none}}
 @media print{.layout,.layout:has(.contents-list){display:block}main{padding:0}.contents-list{grid-template-columns:1fr}}
 
+
+/* Offline teaching diagrams */
+.teaching-diagram{margin:24px 0;padding:20px;border:1px solid #b7ced7;border-radius:10px;background:#f8fbfc;break-inside:avoid}
+.diagram-heading{font-weight:750;color:#245b65;margin-bottom:14px}
+.diagram-scroll{overflow-x:auto;border-radius:6px}
+.diagram-scroll:focus-visible{outline:3px solid #277e83;outline-offset:3px}
+.teaching-diagram svg{display:block;width:100%;min-width:620px;height:auto;font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
+.teaching-diagram figcaption{margin-top:14px;font-size:.88rem;line-height:1.8;color:#415f70}
+@media(max-width:760px){.teaching-diagram{padding:14px}.diagram-heading:after{content:"（可左右滑動）";display:block;font-size:.8rem;font-weight:400}}
+@media print{.diagram-scroll{overflow:visible}.teaching-diagram svg{min-width:0}.teaching-diagram{background:white;padding:10px}}
